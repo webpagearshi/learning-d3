@@ -1,0 +1,72 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #222;
+  color: white;
+  padding: 10px 20px;
+}
+
+.logo {
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-links a.active {
+  border-bottom: 2px solid #00bcd4;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+  margin-left: 20px;
+  cursor: pointer;
+  padding-bottom: 5px;
+}
+
+.dropdown-title {
+  color: white;
+}
+
+/* Menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+
+  background: white;
+  color: black;
+  min-width: 150px;
+
+  border-radius: 5px;
+  padding: 10px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* SHOW on hover (this is the fix) */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 15px;
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background: #f0f0f0;
+}
