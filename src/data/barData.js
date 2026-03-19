@@ -1,4 +1,4 @@
-export const data = [
+export const barData = [
   { country: "United States", students: 68 },
   { country: "France", students: 21 },
   { country: "United Kingdom", students: 21 },
