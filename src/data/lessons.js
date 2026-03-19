@@ -9,6 +9,6 @@ export const lessons = [
   },
   {
     name: "Scales WIP",
-    path: "/scales-chart",
+    path: "/scales",
   },
 ];
