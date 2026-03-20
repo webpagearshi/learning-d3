@@ -4,7 +4,7 @@ import { barData } from "../../data/barData";
 
 function BarChart() {
   return (
-    <div style={{ textAlign: "center", marginTop: "30px" }}>
+    <div style={{ textAlign: "center", marginTop: "10px" }}>
       <h2>Bar Chart: Student Enrollment by Country</h2>
       <Barplot data={barData} />
     </div>

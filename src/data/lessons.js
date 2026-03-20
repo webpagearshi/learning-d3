@@ -7,8 +7,4 @@ export const lessons = [
     name: "SVG WIP",
     path: "/svg-chart",
   },
-  {
-    name: "Scales WIP",
-    path: "/scales",
-  },
 ];

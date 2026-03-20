@@ -5,7 +5,7 @@ import * as d3 from "d3";
 function Barplot({ data }) {
   const width = 500;
   const height = 600;
-  const margin = { top: 20, right: 30, bottom: 30, left: 100 };
+  const margin = { top: 10, right: 30, bottom: 30, left: 100 };
 
   const [hovered, setHovered] = useState(null);
   const [tooltip, setTooltip] = useState(null);
@@ -23,6 +23,9 @@ function Barplot({ data }) {
     .domain([0, d3.max(data, (d) => d.students)])
     .range([margin.left, width - margin.right]);
 
+  // Find the data for India to use as annotation
+  const indiaData = data.find((d) => d.country === "India");
+
   return (
     <div style={{ position: "relative" }}>
       <svg width={width} height={height}>
@@ -32,7 +35,68 @@ function Barplot({ data }) {
             <stop offset="100%" stopColor="#5254ac" />
           </linearGradient>
         </defs>
+        {/* 🇮🇳 Annotation for India */}
+        {indiaData && (
+          <>
+            {/* 📦 Position values (clean + reusable) */}
+            {(() => {
+              const barX = xScale(indiaData.students);
+              const barY = yScale(indiaData.country) + yScale.bandwidth() / 2;
 
+              const boxX = barX + 80;
+              const boxY = barY - 80;
+
+              const arrowEndX = boxX + 2;
+              const arrowEndY = boxY + 37;
+
+              return (
+                <>
+                  {/* 🎀 Smooth curved arrow */}
+                  <path
+                    d={`
+              M ${barX + 13} ${barY - 5},
+              C ${barX + 40} ${barY - 50},
+                ${barX + 60} ${boxY + 40},
+                ${arrowEndX} ${arrowEndY}
+            `}
+                    fill="none"
+                    stroke="#ff6b81"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                  />
+
+                  {/* 🔺 Proper arrowhead aligned to end */}
+                  <polygon
+                    points={`
+              ${arrowEndX},${arrowEndY}
+              ${arrowEndX - 8},${arrowEndY - 5}
+              ${arrowEndX - 8},${arrowEndY + 5}
+            `}
+                    fill="#ff6b81"
+                  />
+
+                  {/* 🎁 Cute annotation box */}
+                  <g>
+                    <rect
+                      x={boxX + 5}
+                      y={boxY + 12}
+                      width={130}
+                      height={40}
+                      rx={12}
+                      fill="#fff0f5"
+                      stroke="#ff6b81"
+                      filter="drop-shadow(0px 2px 6px rgba(0,0,0,0.2))"
+                    />
+
+                    <text x={boxX + 15} y={boxY + 35} fontSize={12} fill="#333">
+                      🇮🇳 "👋 Hi from India!"
+                    </text>
+                  </g>
+                </>
+              );
+            })()}
+          </>
+        )}
         {/* Bars */}
         {data.map((d) => (
           <rect
