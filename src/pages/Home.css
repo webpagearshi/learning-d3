@@ -1,0 +1,70 @@
+.home-container {
+  padding: 40px;
+}
+
+/* Hero */
+.hero {
+  margin-bottom: 40px;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Lessons */
+.lessons p {
+  margin-bottom: 20px;
+  font-style: italic;
+  color: #4e6f9d;
+}
+
+/* Grid */
+.lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 👈 3 columns */
+  gap: 50px;
+}
+/* Tablet */
+@media (max-width: 900px) {
+  .lesson-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .lesson-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lesson-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  text-decoration: none;
+  color: inherit;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.lesson-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.mini-chart {
+  width: 100%;
+  height: 150px; /* important */
+  overflow: hidden;
+  margin-bottom: 10px;
+}

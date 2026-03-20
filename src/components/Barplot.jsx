@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import * as d3 from "d3";
 
 // Barplot component to render a horizontal bar chart
-function Barplot({ data }) {
-  const width = 500;
-  const height = 600;
-  const margin = { top: 10, right: 30, bottom: 30, left: 100 };
+function Barplot({ data, width = 500, height = 600, isPreview = false }) {
+  const margin = isPreview
+    ? { top: 10, right: 10, bottom: 20, left: 50 }
+    : { top: 20, right: 30, bottom: 30, left: 100 };
 
   const [hovered, setHovered] = useState(null);
   const [tooltip, setTooltip] = useState(null);
@@ -36,7 +36,7 @@ function Barplot({ data }) {
           </linearGradient>
         </defs>
         {/* 🇮🇳 Annotation for India */}
-        {indiaData && (
+        {!isPreview && indiaData && (
           <>
             {/* 📦 Position values (clean + reusable) */}
             {(() => {
@@ -54,7 +54,7 @@ function Barplot({ data }) {
                   {/* 🎀 Smooth curved arrow */}
                   <path
                     d={`
-              M ${barX + 13} ${barY - 5},
+              M ${barX + 1} ${barY - 5},
               C ${barX + 40} ${barY - 50},
                 ${barX + 60} ${boxY + 40},
                 ${arrowEndX} ${arrowEndY}
@@ -108,57 +108,65 @@ function Barplot({ data }) {
             fill={hovered === d.country ? "url(#barGradient)" : "#055653"}
             rx={5}
             onMouseEnter={(e) => {
-              setHovered(d.country);
-              setTooltip({
-                country: d.country,
-                students: d.students,
-                x: e.clientX,
-                y: e.clientY,
-              });
+              if (!isPreview) {
+                setHovered(d.country);
+                setTooltip({
+                  country: d.country,
+                  students: d.students,
+                  x: e.clientX,
+                  y: e.clientY,
+                });
+              }
             }}
             onMouseMove={(e) => {
-              setTooltip((prev) => ({
-                ...prev,
-                x: e.clientX,
-                y: e.clientY,
-              }));
+              if (!isPreview) {
+                setTooltip((prev) => ({
+                  ...prev,
+                  x: e.clientX,
+                  y: e.clientY,
+                }));
+              }
             }}
             onMouseLeave={() => {
-              setHovered(null);
-              setTooltip(null);
+              if (!isPreview) {
+                setHovered(null);
+                setTooltip(null);
+              }
             }}
             style={{ transition: "fill 0.3s ease" }}
           />
         ))}
 
         {/* Value Labels */}
-        {data.map((d) => (
-          <text
-            key={d.country + "-label"}
-            x={xScale(d.students) + 5}
-            y={yScale(d.country) + yScale.bandwidth() / 2}
-            alignmentBaseline="middle"
-            fontSize={hovered === d.country ? 16 : 12}
-            fill={hovered === d.country ? "#5f5495" : "#000"}
-          >
-            {d.students}
-          </text>
-        ))}
+        {!isPreview &&
+          data.map((d) => (
+            <text
+              key={d.country + "-label"}
+              x={xScale(d.students) + 5}
+              y={yScale(d.country) + yScale.bandwidth() / 2}
+              alignmentBaseline="middle"
+              fontSize={hovered === d.country ? 16 : 12}
+              fill={hovered === d.country ? "#5f5495" : "#000"}
+            >
+              {d.students}
+            </text>
+          ))}
 
         {/* Y-axis Labels */}
-        {data.map((d) => (
-          <text
-            key={d.country + "-yaxis"}
-            x={margin.left - 5}
-            y={yScale(d.country) + yScale.bandwidth() / 2}
-            textAnchor="end"
-            alignmentBaseline="middle"
-            fontSize={12}
-            fill="#000"
-          >
-            {d.country}
-          </text>
-        ))}
+        {!isPreview &&
+          data.map((d) => (
+            <text
+              key={d.country + "-yaxis"}
+              x={margin.left - 5}
+              y={yScale(d.country) + yScale.bandwidth() / 2}
+              textAnchor="end"
+              alignmentBaseline="middle"
+              fontSize={12}
+              fill="#000"
+            >
+              {d.country}
+            </text>
+          ))}
       </svg>
 
       {/* ✅ Tooltip */}
