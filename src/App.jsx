@@ -2,6 +2,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./pages/Home";
 import BarChart from "./pages/lessons/BarChart";
+import HorizontalBarChart from "./pages/lessons/HorizontalBarChart";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="bar-chart" element={<BarChart />} />
+          <Route path="horizontal-bar-chart" element={<HorizontalBarChart />} />
         </Route>
       </Routes>
     </HashRouter>
