@@ -1,8 +1,11 @@
-function HorizontalBarPlot() {
+import React from "react";
+import { scaleBand, scaleLinear } from "d3";
+
+function HorizontalBarPlot({ data }) {
   return (
-    <div>
-      <p>Chart coming soon...</p>
-    </div>
+    <svg width={width} height={height}>
+      {allBars}
+    </svg>
   );
 }
 

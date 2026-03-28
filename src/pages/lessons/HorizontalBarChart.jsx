@@ -6,7 +6,7 @@ function HorizontalBarChart() {
   console.log(data);
   return (
     <div style={{ textAlign: "center", marginTop: "10px" }}>
-      <h2>Escape Artists</h2>
+      <h2 style={{ textAlign: "center" }}>Escape Artists</h2>
       <HorizontalBarPlot data={data} />
     </div>
   );
