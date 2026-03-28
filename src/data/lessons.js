@@ -6,15 +6,9 @@ export const lessons = [
     type: "bar",
   },
   {
-    name: "SVG",
-    path: "/svg",
-    description: "WIP lesson on SVG basics (placeholder)",
-    type: "svg",
-  },
-  {
-    name: "WIP",
-    path: "/wip",
-    description: "WIP lesson (placeholder)",
-    type: "xyz",
+    name: "Horizontal Bar Chart",
+    path: "/horizontal-bar-chart",
+    description: "Horizontal bar chart using D3 shapes & scales",
+    type: "bar",
   },
 ];
