@@ -1,6 +1,7 @@
 import { lessons } from "../data/lessons";
 import Barplot from "../components/Barplot";
 import { barData } from "../data/barData";
+import { data } from "../data/labInfections";
 import { Link } from "react-router-dom";
 import "./Home.css";
 
@@ -33,7 +34,18 @@ function Home() {
                   />
                 )}
               </div>
-
+              {/* Mini chart */}
+              <div className="mini-chart">
+                {lesson.type === "horizontal-bar" && (
+                  <img
+                    src={lesson.image}
+                    alt={lesson.name}
+                    className="lesson-image"
+                    width={200}
+                    height={250}
+                  />
+                )}
+              </div>
               {/* Text */}
               <h3>{lesson.name}</h3>
               <p>{lesson.description}</p>
