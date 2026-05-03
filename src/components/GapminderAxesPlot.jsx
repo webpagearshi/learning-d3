@@ -13,7 +13,7 @@ function GapminderAxesPlot({ data, width = 800, height = 500 }) {
     .domain([0, max(data, (d) => d.gdpPercap)])
     .range([0, boundsWidth]);
   const yScale = scaleLinear()
-    .domain([0, max(data, (d) => d.lifeExp)])
+    .domain([35, max(data, (d) => d.lifeExp)])
     .range([boundsHeight, 0]);
 
   // you need a sizeScale too!
