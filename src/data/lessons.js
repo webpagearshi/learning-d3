@@ -15,4 +15,11 @@ export const lessons = [
     type: "horizontal-bar",
     image: barChartPreview,
   },
+  {
+    name: "Gap Minder Axes Chart",
+    path: "/gapminder-axes-chart",
+    description: "Editorial style horizontal bar chart",
+    type: "bubble-chart",
+    image: bubbleChartPreview,
+  },
 ];

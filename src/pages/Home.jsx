@@ -52,6 +52,24 @@ function Home() {
             </Link>
           ))}
         </div>
+        {/* Mini chart */}
+              <div className="mini-chart">
+                {lesson.type === "bubble-chart" && (
+                  <img
+                    src={lesson.image}
+                    alt={lesson.name}
+                    className="lesson-image"
+                    width={200}
+                    height={250}
+                  />
+                )}
+              </div>
+              {/* Text */}
+              <h3>{lesson.name}</h3>
+              <p>{lesson.description}</p>
+            </Link>
+          ))}
+        </div>
       </section>
     </div>
   );
