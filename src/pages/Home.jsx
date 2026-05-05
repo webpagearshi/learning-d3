@@ -49,10 +49,8 @@ function Home() {
               {/* Text */}
               <h3>{lesson.name}</h3>
               <p>{lesson.description}</p>
-            </Link>
-          ))}
-        </div>
-        {/* Mini chart */}
+
+              {/* Mini chart */}
               <div className="mini-chart">
                 {lesson.type === "bubble-chart" && (
                   <img

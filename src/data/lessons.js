@@ -18,7 +18,7 @@ export const lessons = [
   {
     name: "Gap Minder Axes Chart",
     path: "/gapminder-axes-chart",
-    description: "Editorial style horizontal bar chart",
+    description: "Scatter plot with multiple axes using D3+React",
     type: "bubble-chart",
     image: bubbleChartPreview,
   },
