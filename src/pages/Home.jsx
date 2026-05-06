@@ -2,6 +2,8 @@ import { lessons } from "../data/lessons";
 import Barplot from "../components/Barplot";
 import { barData } from "../data/barData";
 import { data } from "../data/labInfections";
+import { BubbleData } from "../data/gapminderData";
+
 import { Link } from "react-router-dom";
 import "./Home.css";
 
@@ -23,46 +25,30 @@ function Home() {
         <div className="lesson-grid">
           {lessons.map((lesson) => (
             <Link key={lesson.path} to={lesson.path} className="lesson-card">
-              {/* Mini chart */}
+              {/* Mini chart (single container) */}
               <div className="mini-chart">
                 {lesson.type === "bar" && (
-                  <Barplot
-                    data={barData}
-                    width={200}
-                    height={250}
-                    isPreview={true}
-                  />
+                  <Barplot data={barData} width={200} height={250} isPreview />
                 )}
-              </div>
-              {/* Mini chart */}
-              <div className="mini-chart">
+
                 {lesson.type === "horizontal-bar" && (
                   <img
                     src={lesson.image}
                     alt={lesson.name}
                     className="lesson-image"
-                    width={200}
-                    height={250}
                   />
                 )}
-              </div>
-              {/* Text */}
-              <h3>{lesson.name}</h3>
-              <p>{lesson.description}</p>
 
-              {/* Mini chart */}
-              <div className="mini-chart">
                 {lesson.type === "bubble-chart" && (
                   <img
                     src={lesson.image}
                     alt={lesson.name}
                     className="lesson-image"
-                    width={200}
-                    height={250}
                   />
                 )}
               </div>
-              {/* Text */}
+
+              {/* Text (always below) */}
               <h3>{lesson.name}</h3>
               <p>{lesson.description}</p>
             </Link>

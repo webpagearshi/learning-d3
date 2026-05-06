@@ -29,17 +29,17 @@ function GapminderAxesPlot({ data, width = 800, height = 500 }) {
   return (
     <svg width={width} height={height} style={{ overflow: "visible" }}>
       {/* SVG background */}
-      <rect
-        x={0}
-        y={0}
-        width={boundsWidth}
-        height={boundsHeight}
-        fill="#f1f1f1"
-        fillOpacity={0.6}
-      />
 
       {/* Bounds area */}
       <g transform={`translate(${MARGIN.left}, ${MARGIN.top})`}>
+        <rect
+          x={0}
+          y={0}
+          width={boundsWidth}
+          height={boundsHeight}
+          fill="#f1f1f1"
+          fillOpacity={0.6}
+        />
         {/* Loop for circles here! */}
         {data.map((d, i) => (
           <circle
@@ -55,3 +55,4 @@ function GapminderAxesPlot({ data, width = 800, height = 500 }) {
     </svg>
   );
 }
+export default GapminderAxesPlot;

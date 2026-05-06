@@ -1,5 +1,5 @@
-import { image } from "d3";
 import barChartPreview from "../assets/images/economist.png";
+import bubbleChartPreview from "../assets/images/bubbleChart.png";
 
 export const lessons = [
   {
