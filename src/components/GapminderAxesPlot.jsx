@@ -1,8 +1,9 @@
 import { scaleLinear, scaleSqrt, max, scaleOrdinal } from "d3";
 import React, { useState } from "react";
 import { AxisBottom } from "./AxisBottom";
+import { AxisLeft } from "./AxisLeft";
 
-const MARGIN = { top: 20, right: 20, bottom: 50, left: 50 };
+const MARGIN = { top: 20, right: 20, bottom: 50, left: 60 };
 
 // GapminderAxesPlot component to render a scatter plot with axes
 function GapminderAxesPlot({ data, width = 800, height = 500 }) {
@@ -16,12 +17,13 @@ function GapminderAxesPlot({ data, width = 800, height = 500 }) {
     .range([0, boundsWidth]);
   const yScale = scaleLinear()
     .domain([35, max(data, (d) => d.lifeExp)])
+    .nice()
     .range([boundsHeight, 0]);
 
   // you need a sizeScale too!
   const sizeScale = scaleSqrt()
     .domain([0, max(data, (d) => d.pop)])
-    .range([4, 40]);
+    .range([2, 35]);
 
   // color scale for continents
   const colorScale = scaleOrdinal()
@@ -62,6 +64,12 @@ function GapminderAxesPlot({ data, width = 800, height = 500 }) {
             label="GDP per Capita"
           />
         </g>
+        <AxisLeft
+          yScale={yScale}
+          pixelsPerTick={40}
+          boundsWidth={boundsWidth}
+          label="Life Expectancy"
+        />
       </g>
     </svg>
   );
