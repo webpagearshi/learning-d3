@@ -1,6 +1,6 @@
 const TICK_LENGTH = 6;
 
-export const AxisBottom = ({ xScale, pixelsPerTick, boundsHeight }) => {
+export const AxisBottom = ({ xScale, pixelsPerTick, boundsHeight, label }) => {
   const range = xScale.range();
   const width = range[1] - range[0];
   const numberOfTicksTarget = Math.floor(width / pixelsPerTick);
@@ -18,7 +18,7 @@ export const AxisBottom = ({ xScale, pixelsPerTick, boundsHeight }) => {
       {xScale.ticks(numberOfTicksTarget).map((value) => (
         <g key={value} transform={`translate(${xScale(value)}, 0)`}>
           {/* Grid line */}
-          <line y1={0} y2={-boundsHeight} stroke="currentColor" opacity={0.1} />
+          <line y1={0} y2={-boundsHeight} stroke="currentColor" opacity={0.08} strokeDasharray={4,4} />
           {/* Tick */}
           <line y2={TICK_LENGTH} stroke="currentColor" />
           <text
@@ -32,6 +32,13 @@ export const AxisBottom = ({ xScale, pixelsPerTick, boundsHeight }) => {
           </text>
         </g>
       ))}
+
+      {/* Axis title */}
+      {label && (
+        <text x={width / 2} y={45} fontSize={12} textAnchor="middle">
+          {label}
+        </text>
+      )}
     </>
   );
 };

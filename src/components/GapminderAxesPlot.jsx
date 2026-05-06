@@ -1,7 +1,8 @@
 import { scaleLinear, scaleSqrt, max, scaleOrdinal } from "d3";
 import React, { useState } from "react";
+import { AxisBottom } from "./AxisBottom";
 
-const MARGIN = { top: 40, right: 60, bottom: 40, left: 60 };
+const MARGIN = { top: 20, right: 20, bottom: 50, left: 50 };
 
 // GapminderAxesPlot component to render a scatter plot with axes
 function GapminderAxesPlot({ data, width = 800, height = 500 }) {
@@ -11,6 +12,7 @@ function GapminderAxesPlot({ data, width = 800, height = 500 }) {
   // Scales for x and y axes
   const xScale = scaleLinear()
     .domain([0, max(data, (d) => d.gdpPercap)])
+    .nice()
     .range([0, boundsWidth]);
   const yScale = scaleLinear()
     .domain([35, max(data, (d) => d.lifeExp)])
@@ -29,17 +31,16 @@ function GapminderAxesPlot({ data, width = 800, height = 500 }) {
   return (
     <svg width={width} height={height} style={{ overflow: "visible" }}>
       {/* SVG background */}
-
+      <rect
+        x={0}
+        y={0}
+        width={width}
+        height={height}
+        fill="#f1f1f1"
+        fillOpacity={0.4}
+      />
       {/* Bounds area */}
       <g transform={`translate(${MARGIN.left}, ${MARGIN.top})`}>
-        <rect
-          x={0}
-          y={0}
-          width={boundsWidth}
-          height={boundsHeight}
-          fill="#f1f1f1"
-          fillOpacity={0.6}
-        />
         {/* Loop for circles here! */}
         {data.map((d, i) => (
           <circle
@@ -48,9 +49,19 @@ function GapminderAxesPlot({ data, width = 800, height = 500 }) {
             cy={yScale(d.lifeExp)}
             r={sizeScale(d.pop)}
             fill={colorScale(d.continent)}
-            fillOpacity={0.7}
+            fillOpacity={0.3}
+            stroke={colorScale(d.continent)}
+            strokeWidth={0.5}
           />
         ))}
+        <g transform={`translate(0, ${boundsHeight})`}>
+          <AxisBottom
+            xScale={xScale}
+            pixelsPerTick={60}
+            boundsHeight={boundsHeight}
+            label="GDP per Capita"
+          />
+        </g>
       </g>
     </svg>
   );
